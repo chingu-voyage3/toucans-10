@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Grid Template</title>
+    <title>Toucan Pens</title>
     <meta name="description" content="">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
@@ -12,7 +12,6 @@
 
     <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="styles.css">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -21,17 +20,44 @@
 
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-
-
+    <ul id="filter-dropdown" class="dropdown-content">
+        <li>
+            <a href="#!">one</a>
+        </li>
+        <li>
+            <a href="#!">two</a>
+        </li>
+        <li>
+            <a href="#!">three</a>
+        </li>
+    </ul>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Toucan Pens</a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <a href="#">CodePen</a>
+                </li>
+                <li>
+                    <a href="#">Chingu</a>
+                </li>
+                <!-- Dropdown Trigger -->
+                <li>
+                    <a class="dropdown-button" href="#!" data-activates="filter-dropdown">Filter
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <!--JavaScript at end of body for optimized loading-->
 
     <!--TODO: Change to local import of Materialize later, not currently working-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="index.js"></script>
-</body
-
-</html>
+</body </html>
