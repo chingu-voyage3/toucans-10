@@ -12,7 +12,35 @@ body {
   background-color: gray;
 }
 #card-container {
-  background-color: #3185fc;
+  background-color: hsl(215, 97%, 59%);
   height: calc(100vh - 64px);
   overflow: scroll;
+}
+
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.card-title-black {
+  font-size: 1.5em;
+  margin: 5px 0 0 10px;
+}
+.front,
+.back {
+  backface-visibility: hidden;
+  transform-style: preserve3d;
+  transition: all 0.4s;
+}
+.back {
+  position: absolute;
+  top: 0;
+  transform: rotateY(-180deg);
+}
+.flipped .back {
+  transform: rotateY(0deg);
+  position: absolute;
+}
+
+.flipped .front {
+  transform: rotateY(180deg);
+  position: absolute;
 }

@@ -1,18 +1,19 @@
 $(document).ready(function() {
   //Materialize dropdown trigger
   $(".dropdown-button").dropdown({ hover: false });
+  $(".card").click(function(e) {
+    $(this).toggleClass("flipped");
+  });
 });
 
-
 /* TODO: Cleanup below. Old code that may be useful later */
-
 
 /*
 const cardInfo =
   "<ul><li>Name: Jane Doe</li><li>Profession: Photographer</li><li>Location: Arizona</li><li>Interests: Music, hiking, archery, hanging out with friends, spending time with family</li></ul>";
 */
 
-  /*
+/*
     $(".panel").click(function(e) {
     $(this).toggleClass("flipped");
   });
