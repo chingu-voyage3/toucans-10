@@ -1,9 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
 #nav-panel {
-    background-color: gray;
+  background-color: gray;
 }
 #card-container {
-    background-color: #3185fc;
-}
-#pen-card {
-    display: inline;
+  background-color: #3185fc;
+  height: calc(100vh - 64px);
+  overflow: scroll;
 }
