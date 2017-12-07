@@ -1,10 +1,28 @@
-$(document).ready(function() {
+//$(document).ready(function() {
   //Materialize dropdown trigger
-  $(".dropdown-button").dropdown({ hover: false });
-  $(".card").click(function(e) {
-    $(this).toggleClass("flipped");
-  });
-});
+  //$(".dropdown-button").dropdown({ hover: false });
+  //$(".card").click(function(e) {
+    //$(this).toggleClass("flipped");
+  //});
+//});
+
+function myFunction() {
+    const parent = document.getElementById('flip');
+    const child = document.getElementById('card-img');
+
+    if (document.getElementById('flip').className === 'card') {
+        document.getElementById('flip').classList.add('animation');
+        parent.removeChild(child);
+    }
+    else if (document.getElementById('flip').className === "card animation") {
+        document.getElementById('flip').classList.remove('animation');
+        document.getElementById('flip').classList.add('animation-back');
+    }
+    else {
+        document.getElementById('flip').classList.remove('animation-back');
+        document.getElementById('flip').classList.add('animation');
+    }
+  }
 
 /* TODO: Cleanup below. Old code that may be useful later */
 
