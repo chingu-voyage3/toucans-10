@@ -18,58 +18,46 @@ body {
 }
 .card {
   height: 400px;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+}
+
+.invisible {
+  display: none;
 }
 
 .animation {
-  background-color: red;
-  color: black;
   transform-style: preserve-3d;
-  transition: all 2s;
+  transition: transform 2s;
   transform: rotateY(180deg);
 }
-.animation-back {
-    background-color: green;
-    color: black;
-    transform-style: preserve-3d;
-    transition: all 2s;
-    transform: rotateY(0deg);
+.hidden {
+  display: none;
+}
+.visible {
+  display: block;
+  transform: rotateY(180deg);
 }
 
-.card:hover {
-  /*box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);*/
+.card-front {
+  transform-style: preserve-3d;
+  transition: all 2s;
+  transform: rotateY(0deg);
 }
+
+.card-back {
+    transform-style: preserve-3d;
+    transition: all 2s;
+    transform: rotateY(180deg);
+}
+
+
+
+
 .card-title-black {
   font-size: 1.5em;
   margin: 5px 0 0 10px;
 }
-.front,
-.back {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  min-height: 100%;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-  transition: all 0.4s;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
 .front:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-.back {
-  /*position: absolute;
-  top: -7.5px;*/
-  transform: rotateY(-180deg);
-}
-.back .card {
-  height: 400px;
-}
-.flipped .back {
-  transform: rotateY(0deg);
-  position: absolute;
-}
-
-.flipped .front {
-  transform: rotateY(180deg);
-  position: absolute;
 }

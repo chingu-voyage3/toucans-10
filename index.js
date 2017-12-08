@@ -6,13 +6,38 @@
   //});
 //});
 
+//document.getElementById('flip-embed').style.display = 'none';
+
+function hidden1() {
+  document.getElementById('flip-card-image').classList.toggle('hidden');
+}
+function hidden2() {
+  document.getElementById('flip-card-content').classList.toggle('hidden');
+}
+function nowVisible() {
+  document.getElementById('flip-embed').classList.toggle('visible');
+}
+function cardFlip() {
+  document.getElementById('flip').classList.toggle('animation');
+  setTimeout(hidden1, 1500);
+  setTimeout(hidden2, 1500);
+  setTimeout(nowVisible, 1500);
+}
+
+
+
+
+/* Replace elements when flipping card
 function myFunction() {
     const parent = document.getElementById('flip');
-    const child = document.getElementById('card-img');
+    const child1 = document.getElementById('card-img');
+    const child2 = document.getElementById('card-content');
 
     if (document.getElementById('flip').className === 'card') {
         document.getElementById('flip').classList.add('animation');
-        parent.removeChild(child);
+        parent.removeChild(child1);
+        parent.removeChild(child2);
+        document.getElementsByClassName('embed').style.visibility = 'visible';
     }
     else if (document.getElementById('flip').className === "card animation") {
         document.getElementById('flip').classList.remove('animation');
@@ -23,6 +48,7 @@ function myFunction() {
         document.getElementById('flip').classList.add('animation');
     }
   }
+  */
 
 /* TODO: Cleanup below. Old code that may be useful later */
 
