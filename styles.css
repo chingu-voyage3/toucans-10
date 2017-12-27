@@ -20,14 +20,11 @@ body {
 }
 .card-title-black {
   font-size: 1.5em;
-  margin: 5px 0 0 10px;
+  margin: 10px 0;
 }
 .card-image {
   height: 200px;
 }
 .card-content {
   height: 150px;
-}
-.card-action {
-  height: 80px;
 }
