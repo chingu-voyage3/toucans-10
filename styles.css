@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+#nav-panel {
+  background-color: hsla(195, 90%, 60%, 0.7);
+  height: calc(100vh - 64px);
+}
+#card-container {
+  background-color: hsl(215, 97%, 59%);
+  height: calc(100vh - 64px);
+  overflow: scroll;
+}
+.card:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.card-title-black {
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+@media screen and (max-width: 1200px) {
+  #nav-panel {
+    height: auto;
+  }
+}
