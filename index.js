@@ -62,12 +62,7 @@ function getEmbedablePens(penURLs) {
       $("img")[i].src = penList[i].responseJSON.thumbnail_url;
     });
   });
-<<<<<<< Updated upstream
 };
-=======
-  console.log(penList);
-}
->>>>>>> Stashed changes
 
 let trigger = document.getElementsByClassName("menu-trigger")[0];
 //Toggles menu display property
