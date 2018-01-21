@@ -26,6 +26,10 @@ body {
 .card-title-black {
   font-size: 1.5em;
   margin: 10px 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 992px) {
