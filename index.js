@@ -7,47 +7,49 @@ $(document).ready(function() {
   $(".menu-trigger").click(function(e) {
     $(".large-menu").toggleClass()
   });
+
   // Embed pens on the page
   embedPens();
-  // Makes calls to CodePen and renders oEmbed pens
-  function embedPens() {
-    // RSS call to get editor picks
+});
+
+// Makes calls to CodePen and renders oEmbed pens
+function embedPens() {
+  // RSS call to get editor picks
+  var ajax = $.ajax({
+    url: 'https://codepen.io/picks/feed/',
+    dataType: 'xml'
+  });
+
+  var penURLs = [];
+
+  // Return result when call is done
+  return ajax.done(function(feed) {
+    // Find each pen link in RSS feed
+    $(feed).find("item").each(function () {
+      var linkUrl = $(this).find("link").text();
+      penURLs.push('url='+linkUrl);
+    });
+    // Get the oEmebed iframes for each pen
+    getEmbedablePens(penURLs);
+  });
+};
+
+// Makes a call to get the oEmbed iframes and renders them on the page
+function getEmbedablePens(penURLs) {
+  var penList = [];
+
+  // Get iframes
+  $(penURLs).each(function(i, pURL) {
     var ajax = $.ajax({
-      url: 'https://codepen.io/picks/feed/',
-      dataType: 'xml'
+      url: "https://codepen.io/api/oembed?",
+      data: pURL,
+      crossDomain: true,
+      dataType: "jsonp"
     });
 
-    var penURLs = [];
-
-    // Return result when call is done
-    return ajax.done(function(feed) {
-      // Find each pen link in RSS feed
-      $(feed).find("item").each(function () {
-        var linkUrl = $(this).find("link").text();
-        penURLs.push('url='+linkUrl);
-      });
-      // Get the oEmebed iframes for each pen
-      getEmbedablePens(penURLs);
-    });
-  }
-
-  // Makes a call to get the oEmbed iframes and renders them on the page
-  function getEmbedablePens(penURLs) {
-    var penList = [];
-
-    // Get iframes
-    $(penURLs).each(function(i, pURL) {
-      var ajax = $.ajax({
-        url: "https://codepen.io/api/oembed?",
-        data: pURL,
-        crossDomain: true,
-        dataType: "jsonp"
-      });
-
-      // Push the deffered calls to the list
-      penList.push(ajax);
-    });
-  }
+    // Push the deffered calls to the list
+    penList.push(ajax);
+  });
 
   // When calls are finished, embed each one to the page
   $.when.apply($, penList).then(function() {
@@ -58,7 +60,7 @@ $(document).ready(function() {
       $('#card-container').append(openingHTML + pen + closingHTML);
     })
   });
-});
+};
 
 let trigger = document.getElementsByClassName('menu-trigger')[0];
 //Toggles menu display property
