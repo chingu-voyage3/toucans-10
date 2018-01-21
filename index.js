@@ -4,7 +4,12 @@ $(document).ready(function() {
   $(".card").click(function(e) {
     $(this).toggleClass("flipped");
   });
+  $(".menu-trigger").click(function(e) {
+    $(".large-menu").toggleClass()
+  })
 });
+
+
 
 /* TODO: Cleanup below. Old code that may be useful later */
 
