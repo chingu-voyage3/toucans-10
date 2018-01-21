@@ -7,9 +7,13 @@ body {
   margin: 0;
   overflow: hidden;
 }
-#nav-panel {
-  background-color: hsla(195, 90%, 60%, 0.7);
-  height: calc(100vh - 64px);
+.nav-menu {
+  float: right;
+  display: flex;
+  flex-direction: row;
+}
+.menu-trigger {
+  display: none;
 }
 #card-container {
   background-color: hsl(215, 97%, 59%);
@@ -24,8 +28,18 @@ body {
   margin: 10px 0;
 }
 
-@media screen and (max-width: 1200px) {
-  #nav-panel {
-    height: auto;
+@media screen and (max-width: 992px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    top: 64px;
+    right: 0;
+    position: absolute;
+    background-color: #ee6e73;
+    z-index: 99;
+  }
+  .menu-trigger {
+    display: block;
+    float: right;
   }
 }
