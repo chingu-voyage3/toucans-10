@@ -9,6 +9,17 @@ $(document).ready(function() {
   })
 });
 
+let trigger = document.getElementsByClassName('menu-trigger')[0];
+trigger.onclick = function() {menuTrigger()};
+
+function menuTrigger() {
+  let menu = document.getElementsByClassName('nav-menu')[0];
+  if (menu.style.display === 'none') {
+    menu.style.display = 'flex';
+  } else {
+    menu.style.display = 'none';
+  }
+}
 
 
 /* TODO: Cleanup below. Old code that may be useful later */

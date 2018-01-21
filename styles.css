@@ -7,13 +7,10 @@ body {
   margin: 0;
   overflow: hidden;
 }
-.large-menu {
-  float: right;
-}
-.small-menu {
+.nav-menu {
   float: right;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 .menu-trigger {
   display: none;
@@ -32,8 +29,14 @@ body {
 }
 
 @media screen and (max-width: 992px) {
-  nav ul {
+  .nav-menu {
     display: none;
+    flex-direction: column;
+    top: 64px;
+    right: 0;
+    position: absolute;
+    background-color: #ee6e73;
+    z-index: 99;
   }
   .menu-trigger {
     display: block;
