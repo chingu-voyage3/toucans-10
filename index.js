@@ -10,14 +10,19 @@ $(document).ready(function() {
 });
 
 let trigger = document.getElementsByClassName('menu-trigger')[0];
+//Toggles menu display property
+//JS was not working with media query display change, ran out of time for better solution
+let counter = 0;
 trigger.onclick = function() {menuTrigger()};
 
 function menuTrigger() {
   let menu = document.getElementsByClassName('nav-menu')[0];
-  if (menu.style.display === 'none') {
+  if (counter === 0) {
     menu.style.display = 'flex';
+    counter = 1;
   } else {
     menu.style.display = 'none';
+    counter = 0;
   }
 }
 
