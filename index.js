@@ -4,6 +4,9 @@ $(document).ready(function() {
   $(".card").click(function(e) {
     $(this).toggleClass("flipped");
   });
+  $(".menu-trigger").click(function(e) {
+    $(".large-menu").toggleClass()
+  });
 
   // Embed pens on the page
   embedPens();
@@ -29,7 +32,7 @@ function embedPens() {
     // Get the oEmebed iframes for each pen
     getEmbedablePens(penURLs);
   });
-}
+};
 
 // Makes a call to get the oEmbed iframes and renders them on the page
 function getEmbedablePens(penURLs) {
@@ -50,7 +53,7 @@ function getEmbedablePens(penURLs) {
 
   // When calls are finished, embed each one to the page
   $.when.apply($, penList).then(function() {
-    var openingHTML = '<div class="row"><div class="col s12">';
+    var openingHTML = '<div class="row"><div class="col s12 m6 l4">';
     var closingHTML = '</div></div>';
     $(penList).each(function(i) {
       var pen = penList[i].responseJSON.html;
@@ -58,6 +61,24 @@ function getEmbedablePens(penURLs) {
     })
   });
 };
+
+let trigger = document.getElementsByClassName('menu-trigger')[0];
+//Toggles menu display property
+//JS was not working with media query display change, ran out of time for better solution
+let counter = 0;
+trigger.onclick = function() {menuTrigger()};
+
+function menuTrigger() {
+  let menu = document.getElementsByClassName('nav-menu')[0];
+  if (counter === 0) {
+    menu.style.display = 'flex';
+    counter = 1;
+  } else {
+    menu.style.display = 'none';
+    counter = 0;
+  }
+}
+
 
 /* TODO: Cleanup below. Old code that may be useful later */
 
