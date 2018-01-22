@@ -1,9 +1,6 @@
 $(document).ready(function() {
   //Materialize dropdown trigger
   $(".dropdown-button").dropdown({ hover: false });
-  $(".card").click(function(e) {
-    $(this).toggleClass("flipped");
-  });
   $(".menu-trigger").click(function(e) {
     $(".large-menu").toggleClass();
   });
@@ -68,11 +65,6 @@ function getEmbedablePens(penURLs) {
       $(".card-title-black")[i].innerHTML = penList[i].responseJSON.title;
       $("img")[i].src = penList[i].responseJSON.thumbnail_url;
     });
-  });
-
-  $(".card")[0].click(function(e) {
-    $(this).toggleClass("flipped");
-    console.log("clicked");
   });
 };
 
