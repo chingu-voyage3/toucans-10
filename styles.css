@@ -15,6 +15,9 @@ body {
 .menu-trigger {
   display: none;
 }
+.nav-wrapper {
+  margin: 0 10px;
+}
 #card-container {
   background-color: hsl(215, 97%, 59%);
   height: calc(100vh - 64px);
@@ -30,6 +33,26 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.front,
+.back {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.4s;
+}
+.back {
+  transform: rotateY(-180deg);
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.flipped .back {
+  transform: rotateY(0deg);
+}
+
+.flipped .front {
+  transform: rotateY(180deg);
 }
 
 @media screen and (max-width: 992px) {

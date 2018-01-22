@@ -50,6 +50,13 @@ function getEmbedablePens(penURLs) {
     // Push the deffered calls to the list
     penList.push(ajax);
   });
+  
+  let cardNumber = penList.length;
+  let i = 0;
+  while (i < cardNumber) {
+    $("#card-container").append('<div class="col s12 m6 l4"><div class="card"><div class="front"><div class="card-image"><img src=""></div><div class="card-content"><div class="card-title-black"></div><p></p></div><div class="card-action"><a href="https://codepen.io/rkchauhan/pen/NNKgJY/">Material Design Buttons</a></div></div><div class="back"><iframe id="cp_embed_zpyyBB" src="https://codepen.io/shubniggurath/embed/preview/zpyyBB?height=300&amp;slug-hash=zpyyBB&amp;default-tabs=js,result&amp;host=https://codepen.io&amp;embed-version=2" title="Fractional" scrolling="no" frameborder="0" height="300" allowtransparency="true" class="cp_embed_iframe" style="width: 100%; overflow: hidden;"></iframe></div></div></div>');
+    i++;
+  }
 
   // When calls are finished, embed each one to the page
   $.when.apply($, penList).then(function() {
@@ -61,6 +68,11 @@ function getEmbedablePens(penURLs) {
       $(".card-title-black")[i].innerHTML = penList[i].responseJSON.title;
       $("img")[i].src = penList[i].responseJSON.thumbnail_url;
     });
+  });
+
+  $(".card")[0].click(function(e) {
+    $(this).toggleClass("flipped");
+    console.log("clicked");
   });
 };
 
