@@ -1,31 +1,82 @@
 $(document).ready(function() {
   //Materialize dropdown trigger
   $(".dropdown-button").dropdown({ hover: false });
-  $(".card").click(function(e) {
-    $(this).toggleClass("flipped");
-  });
   $(".menu-trigger").click(function(e) {
-    $(".large-menu").toggleClass()
-  })
+    $(".large-menu").toggleClass();
+  });
+
+  // Embed pens on the page
+  embedPens();
 });
 
-let trigger = document.getElementsByClassName('menu-trigger')[0];
+// Makes calls to CodePen and renders oEmbed pens
+function embedPens() {
+  // RSS call to get editor picks
+  var ajax = $.ajax({
+    url: 'https://codepen.io/picks/feed/',
+    dataType: 'xml'
+  });
+
+  var penURLs = [];
+
+  // Return result when call is done
+  return ajax.done(function(feed) {
+    // Find each pen link in RSS feed
+    $(feed).find("item").each(function () {
+      var linkUrl = $(this).find("link").text();
+      penURLs.push('url='+linkUrl);
+    });
+    // Get the oEmebed iframes for each pen
+    getEmbedablePens(penURLs);
+  });
+};
+
+// Makes a call to get the oEmbed iframes and renders them on the page
+function getEmbedablePens(penURLs) {
+  var penList = [];
+
+  // Get iframes
+  $(penURLs).each(function(i, pURL) {
+    var ajax = $.ajax({
+      url: "https://codepen.io/api/oembed?",
+      data: pURL,
+      crossDomain: true,
+      dataType: "jsonp"
+    });
+
+    // Push the deffered calls to the list
+    penList.push(ajax);
+  });
+
+  // When calls are finished, embed each one to the page
+  $.when.apply($, penList).then(function() {
+    var openingHTML = '<div class="col s12 m6 l4">';
+    var closingHTML = "</div></div>";
+    $(penList).each(function(i) {
+      var pen = penList[i].responseJSON.html;
+      $("#card-container").append(openingHTML + pen + closingHTML);
+    });
+  });
+};
+
+let trigger = document.getElementsByClassName("menu-trigger")[0];
 //Toggles menu display property
 //JS was not working with media query display change, ran out of time for better solution
 let counter = 0;
-trigger.onclick = function() {menuTrigger()};
+trigger.onclick = function() {
+  menuTrigger();
+};
 
 function menuTrigger() {
-  let menu = document.getElementsByClassName('nav-menu')[0];
+  let menu = document.getElementsByClassName("nav-menu")[0];
   if (counter === 0) {
-    menu.style.display = 'flex';
+    menu.style.display = "flex";
     counter = 1;
   } else {
-    menu.style.display = 'none';
+    menu.style.display = "none";
     counter = 0;
   }
 }
-
 
 /* TODO: Cleanup below. Old code that may be useful later */
 
