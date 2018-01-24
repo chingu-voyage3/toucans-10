@@ -67,3 +67,9 @@ nav{
     top: 56px;
   }
 }
+
+@media screen and (min-width: 992px) {
+  .nav-menu {
+    display: flex !important;
+  }
+}
