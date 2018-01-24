@@ -28,7 +28,7 @@ nav{
   font-size: 2.5em !important ;
 }
 #card-container {
-  background-color: #fff;
+  background-color: #eee;
   height: calc(100vh - 64px);
   overflow: scroll;
 }

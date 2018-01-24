@@ -35,11 +35,14 @@ function embedPens() {
 function getEmbedablePens(penURLs) {
   var penList = [];
 
-  // Get iframes
+  // Set the height of the returned iFrame
+  var height = '&height=500';
+
+  // Get iframes 
   $(penURLs).each(function(i, pURL) {
     var ajax = $.ajax({
       url: "https://codepen.io/api/oembed?",
-      data: pURL,
+      data: pURL + height,
       crossDomain: true,
       dataType: "jsonp"
     });
@@ -51,7 +54,11 @@ function getEmbedablePens(penURLs) {
   // When calls are finished, embed each one to the page
   $.when.apply($, penList).then(function() {
     var openingHTML = '<div class="col s12 m6 l4">';
-    var closingHTML = "</div></div>";
+    openingHTML    += '<div class="card">';
+    openingHTML    += '<div class="card-image">'
+
+    var closingHTML = "</div></div></div></div>";
+
     $(penList).each(function(i) {
       var pen = penList[i].responseJSON.html;
       $("#card-container").append(openingHTML + pen + closingHTML);
