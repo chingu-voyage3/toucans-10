@@ -28,6 +28,7 @@ function embedPens() {
     });
     // Get the oEmebed iframes for each pen
     getEmbedablePens(penURLs);
+
   });
 };
 
@@ -53,15 +54,22 @@ function getEmbedablePens(penURLs) {
 
   // When calls are finished, embed each one to the page
   $.when.apply($, penList).then(function() {
-    var openingHTML = '<div class="col s12 m6 l4">';
-    openingHTML    += '<div class="card">';
-    openingHTML    += '<div class="card-image">'
+    var openingHTML = '<div class="col s12 l6">';
+    var closingHTML = '</div>'
 
-    var closingHTML = "</div></div></div></div>";
+    // Hide container for fade in
+    $("#card-container").hide();
 
+    // Embed
     $(penList).each(function(i) {
       var pen = penList[i].responseJSON.html;
-      $("#card-container").append(openingHTML + pen + closingHTML);
+      var html = openingHTML + pen + closingHTML;
+      $(html).appendTo("#card-container");
+    });
+
+    // Fade in container when last iframe is loaded
+    $("iframe").last().on("load", function () {
+      $("#card-container").fadeIn(1000);
     });
   });
 };
@@ -86,3 +94,71 @@ function menuTrigger() {
     counter = 0;
   }
 }
+
+$(".card").on('click', function() {
+	/* The position of the container will be set to fixed, so set the top & left properties of the container */ 
+	var bounding_box = $(".card").get(0).getBoundingClientRect();
+	$(this).css({ top: bounding_box.top + 'px', left: bounding_box.left + 'px' });
+
+	/* Set container to fixed position. Add animation */
+	$(this).addClass('in-animation');
+
+	/* To animate the container from full-screen to normal, we need dynamic keyframes */
+	var styles = '';
+	styles = '@keyframes outlightbox {';
+		styles += '0% {'; 
+		styles += 'height: 100%;';
+		styles += 'width: 100%;';
+		styles += 'top: 0px;';
+		styles += 'left: 0px;';
+		styles += '}';
+		styles += '50% {'; 
+		styles += 'height: 200px;';
+		styles += 'top: ' + bounding_box.y + 'px;';
+		styles += '}';
+		styles += '100% {';
+		styles += 'height: 200px;';
+		styles += 'width: 500px;';
+		styles += 'top: ' + bounding_box.y + 'px;';
+		styles += 'left: ' + bounding_box.x + 'px;';
+		styles += '}';
+	styles += '}';
+
+	/* Add keyframe to CSS */
+	$("#lightbox-animations").get(0).sheet.insertRule(styles, 0);
+
+	/* Hide the window scrollbar */
+	$("body").css('overflow', 'hidden');
+});
+
+/* Click on close button when full-screen */
+$("#close").on('click', function(e) {
+	$("#close").hide();
+
+	/* Window scrollbar normal */
+	$("body").css('overflow', 'auto');
+
+	/* Show animation */
+	$("#container-1").addClass('out-animation');
+
+	e.stopPropagation();
+});
+
+/* On animationend : from normal to full screen & full screen to normal */
+$("#container-1").on('animationend', function(e) {
+	/* On animation end from normal to full-screen */
+	if(e.originalEvent.animationName == 'inlightbox') {
+		$("#close").show();
+	}
+	/* On animation end from full-screen to normal */
+	else if(e.originalEvent.animationName == 'outlightbox') {
+		/* Remove fixed positioning, remove animation rules */
+		$("#container-1").removeClass('in-animation').removeClass('out-animation');
+		
+		/* Remove the empty container that was earlier added */
+		$("#empty-container").remove();
+
+		/* Delete the dynamic keyframe rule that was earlier created */
+		$("#lightbox-animations").get(0).sheet.deleteRule(0);
+	}
+});
