@@ -1,0 +1,75 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+nav{
+  background-color: #8bc34a;
+}
+.nav-menu {
+  float: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.menu-trigger {
+  display: none;
+}
+.nav-wrapper {
+  margin: 0 10px;
+}
+.nav-menu li a {
+  font-size: 1.2em;
+}
+.material-icons {
+  font-size: 2.5em !important ;
+}
+#card-container {
+  background-color: #eee;
+  height: calc(100vh - 64px);
+  overflow: scroll;
+}
+.card:hover {
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+@media screen and (max-width: 992px) {
+  .nav-menu {
+    display: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    top: 64px;
+    right: -10px;
+    position: absolute;
+    background-color: #8bc34a;
+    z-index: 99;
+  }
+  .menu-trigger {
+    display: block;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 601px) {
+  .nav-menu {
+    top: 56px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .nav-menu {
+    display: flex !important;
+  }
+}
