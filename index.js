@@ -28,6 +28,7 @@ function embedPens() {
     });
     // Get the oEmebed iframes for each pen
     getEmbedablePens(penURLs);
+
   });
 };
 
@@ -53,15 +54,22 @@ function getEmbedablePens(penURLs) {
 
   // When calls are finished, embed each one to the page
   $.when.apply($, penList).then(function() {
-    var openingHTML = '<div class="col s12 m6 l4">';
-    openingHTML    += '<div class="card">';
-    openingHTML    += '<div class="card-image">'
+    var openingHTML = '<div class="col s12 l6">';
+    var closingHTML = '</div>'
 
-    var closingHTML = "</div></div></div></div>";
+    // Hide container for fade in
+    $("#card-container").hide();
 
+    // Embed
     $(penList).each(function(i) {
       var pen = penList[i].responseJSON.html;
-      $("#card-container").append(openingHTML + pen + closingHTML);
+      var html = openingHTML + pen + closingHTML;
+      $(html).appendTo("#card-container");
+    });
+
+    // Fade in container when last iframe is loaded
+    $("iframe").last().on("load", function () {
+      $("#card-container").fadeIn(1000);
     });
   });
 };
